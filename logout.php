@@ -3,6 +3,6 @@
     unset($_SESSION['email']);
     header("location: login.php");
 
-    // Logout created
+    // Logout 
     session_destroy();
 ?>
