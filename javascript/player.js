@@ -1,12 +1,15 @@
 
 // ajax
-
+var player = document.getElementById("player");
+player.setAttribute("src", "php/uploads/music/BTR Worldwide 2020.mp3");
 
 // image toggle
 const toggleImg = document.querySelector(".player__song__image-toggle"),
 coverImage = document.querySelector(".player__song__image"),
 chevron = document.querySelector(".chevron");
-let imageLarge = false;
+var imageLarge = false;
+
+
 
 toggleImg.onclick = (() => {
     
@@ -50,36 +53,62 @@ const toTime = (value) => {
     return `${minutes}:${seconds}`;
 }
 
-slider.oninput = (() => {
-    let value = slider.value;
-    let length = 169
-    let currentTime = (value/100) * length
-    let currPercent = (value/length) * 100
+// AUDIO CONTROLS
 
-    slider.setAttribute("max", length)
-    timerValue.textContent = toTime(value);
-    fileLength.textContent = toTime(length);
+
+const playButton = document.querySelector(".btn__media__play"),
+playIco = document.querySelector(".play_i");
+var playing = false;
+slider.setAttribute("max", (player.duration).toFixed(0));
+
+playButton.onclick = () => {
+    if(!playing) {
+        player.play();
+        playIco.setAttribute("icon", "material-symbols:pause-outline");
+    } else {
+        player.pause();
+        playIco.setAttribute("icon", "material-symbols:play-arrow");
+    }
+    playing = !playing;
+}
+
+slider.oninput = (() => {
+    let sliderValue = slider.value;
+    let audioLength = (player.duration).toFixed(0);
+    let currTime = ((sliderValue/229) * audioLength).toFixed(0);
+    let currPercent = ((sliderValue/audioLength) * 100).toFixed(0);
+    player.currentTime = currTime;
+
+    slider.setAttribute("max", audioLength)
+    timerValue.textContent = toTime(sliderValue);
+    fileLength.textContent = toTime(audioLength);
     slideTracker.style.left = currPercent + "%";
 });
 
-let muted = false;
+// slider.value = currPercent;
+
+// VOLUME CONTROLS
+var muted = false;
 
 const setVol = () => {
     if(volSlider.value <= 0) {
-        volIcon.classList.remove("fa-volume-high");
-        volIcon.classList.remove("fa-volume-low");
-        volIcon.classList.add("fa-volume-xmark");
+        // volIcon.classList.remove("fa-volume-high");
+        // volIcon.classList.remove("fa-volume-low");
+        // volIcon.classList.add("fa-volume-xmark");
+        volIcon.setAttribute("icon", "material-symbols:volume-off");
     } else if(volSlider.value <= 50) {
-        volIcon.classList.remove("fa-volume-high");
-        volIcon.classList.remove("fa-volume-xmark");
-        volIcon.classList.add("fa-volume-low");
+        // volIcon.classList.remove("fa-volume-high");
+        // volIcon.classList.remove("fa-volume-xmark");
+        // volIcon.classList.add("fa-volume-low");
+        volIcon.setAttribute("icon", "material-symbols:volume-down");
     } else {
-        volIcon.classList.remove("fa-volume-low");
-        volIcon.classList.remove("fa-volume-xmark");
-        volIcon.classList.add("fa-volume-high");
+        // volIcon.classList.remove("fa-volume-low");
+        // volIcon.classList.remove("fa-volume-xmark");
+        // volIcon.classList.add("fa-volume-high");
+        volIcon.setAttribute("icon", "material-symbols:volume-up");
     }
 }
-
+tempVol = volSlider.value;
 volSlider.oninput = (() => {
     let vol = volSlider.value;
     
@@ -88,6 +117,7 @@ volSlider.oninput = (() => {
     volTracker.style.left = vol + "%";
     
     tempVol = volSlider.value;
+    console.log(volSlider.value);
 });
 
 
@@ -106,4 +136,47 @@ volToggle.onclick = (() => {
     setVol();
 })
 
+let defaultVolume = 70;
+tempVol = defaultVolume;
 
+player.volume = defaultVolume/100;
+volSlider.value = defaultVolume;
+volTracker.style.left = defaultVolume + "%";
+
+// REPEAT
+const repeatBtn = document.querySelector(".btn__media__repeat"),
+repeatIco  = document.querySelector(".repeat__i");
+
+let repeat = false;
+
+repeatBtn.onclick = () => {
+    if(!repeat) {
+        repeatIco.setAttribute("icon", "material-symbols:repeat-one");
+        repeatIco.style.color = "#c2233e";
+    } else {
+        repeatIco.setAttribute("icon", "material-symbols:repeat");
+        repeatIco.style.color = "";
+    }
+
+    repeat = !repeat;
+}
+
+setInterval(() => {
+    setVol();
+
+    player.volume = (volSlider.value)/100;
+    volSlider.value = player.volume * 100;
+
+    let sliderValue = slider.value;
+    let audioLength = (player.duration).toFixed(0);
+    let currPercent = ((sliderValue/audioLength) * 100).toFixed(0);
+
+    slider.setAttribute("max", audioLength)
+    timerValue.textContent = toTime(sliderValue);
+    fileLength.textContent = toTime(audioLength);
+    slideTracker.style.left = currPercent + "%";
+    slider.value = player.currentTime;
+
+    repeat ? player.loop = true : player.loop = false;
+    if(player.ended){ playIco.setAttribute("icon", "material-symbols:play-arrow"); }
+}, 500);

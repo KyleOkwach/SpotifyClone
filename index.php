@@ -8,7 +8,6 @@
         header("location: login.php");
     }
 ?>
-
 <body>
     <!-- body -->
     <div class="container container__main flex">

@@ -15,25 +15,36 @@
             <div class="text__container">
                 <p class="text__mini">Hello</p>
                 <div class="text__container__scroll">
-                    <p><?php echo $row['username'] ?></p>
+                    <p class="name">
+                        <a href="profile.php" class="link-strong">
+                            <?php echo $row['username'] ?>
+                        </a>
+                    </p>
                 </div>
             </div>
-            <button class="nav__profile__toggle"><i class="chevron fa-solid fa-chevron-right"></i></button>
+            <button class="nav__profile__toggle"><iconify-icon icon="material-symbols:chevron-right" class="chevron" width="30" height="30"></iconify-icon></button>
             <div class="nav__profile__toggle-dropdown">
                 <ul>
-                    <li>
-                        <a href="#">
-                            <div class="link__content">
-                                <p>Profile</p>
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                        </a>
-                    </li>
+                    <?php
+                        if(!$profile_page) {
+                            echo '
+                            <li>
+                                <a href="profile.php">
+                                    <div class="link__content">
+                                        <p>Profile</p>
+                                        <iconify-icon icon="iconoir:profile-circled" width="20" height="20"></iconify-icon>
+                                    </div>
+                                </a>
+                            </li>
+                            ';
+                        }
+                    ?>
                     <li>
                         <a href="#">
                             <div class="link__content">
                                 <p>Notifications</p>
-                                <i class="fa-solid fa-bell"><div class="notification__count">99+</div></i>
+                                <iconify-icon icon="ic:baseline-notifications-active" width="20" height="20"></iconify-icon>
+                                <div class="notification__count">9+</div>
                             </div>
                         </a>
                     </li>
@@ -41,17 +52,17 @@
                         <a href="#">
                             <div class="link__content">
                                 <p>Settings</p>
-                                <i class="fa-solid fa-gear"></i>
+                                <iconify-icon icon="material-symbols:settings-outline" width="20" height="20"></iconify-icon>
                             </div>
                         </a>
                     </li>
                     <br>
                     <hr>
                     <li>
-                        <a class="logout" href="logout.php">
+                        <a class="#" href="/logout/">
                             <div class="link__content">
                                 <p>Log Out</p>
-                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <iconify-icon icon="ri:logout-box-line" width="20" height="20"></iconify-icon>
                             </div>
                         </a>
                     </li>
@@ -64,10 +75,10 @@
 
             <ul class="list">
                 <li class="link link__main">
-                    <a href="#">
+                    <a href="index.php">
                         <div class="flex flex__h link__content">
                             <div class="link__icon">
-                                <i class="fa-solid fa-house"></i> 
+                                <iconify-icon icon="material-symbols:home" width="20" height="20"></iconify-icon>
                             </div>
                             <div class="link__fancy">Home</div>
                         </div>
@@ -77,7 +88,7 @@
                     <a href="#">
                         <div class="flex flex__h link__content">
                             <div class="link__icon">
-                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <iconify-icon icon="ic:baseline-search" width="20" height="20"></iconify-icon>
                             </div>
                             <div class="link__fancy">Search</div>
                         </div>
@@ -87,7 +98,7 @@
                     <a href="#">
                         <div class="flex flex__h link__content">
                             <div class="link__icon">
-                                <i class="fa-solid fa-bookmark"></i>
+                                <iconify-icon icon="ic:baseline-library-music" width="20" height="20"></iconify-icon>
                             </div>
                             <div class="link__fancy">Your Library</div>
                         </div>
@@ -106,7 +117,7 @@
                     <a href="#">
                         <div class="flex flex__h link__content">
                             <div class="link__icon">
-                                <i class="fa-solid fa-clock"></i> 
+                                <iconify-icon icon="carbon:recently-viewed" width="20" height="20"></iconify-icon>
                             </div>
                             <div class="link__fancy">Recent</div>
                         </div>
@@ -116,7 +127,7 @@
                     <a href="#">
                         <div class="flex flex__h link__content">
                             <div class="link__icon">
-                                <i class="fa-solid fa-heart"></i>
+                                <iconify-icon icon="mdi:cards-heart" width="20" height="20"></iconify-icon>
                             </div>
                             <div class="link__fancy">Liked</div>
                         </div>
@@ -126,7 +137,7 @@
                     <a href="#">
                         <div class="flex flex__h link__content">
                             <div class="link__icon">
-                                <i class="fa-solid fa-hard-drive"></i>
+                                <iconify-icon icon="fluent:storage-20-filled" width="20" height="20"></iconify-icon>
                             </div>
                             <div class="link__fancy">Local</div>
                         </div>

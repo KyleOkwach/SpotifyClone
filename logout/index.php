@@ -1,7 +1,7 @@
 <?php
     session_start();
     unset($_SESSION['email']);
-    header("location: login.php");
+    header("location: ../login.php");
 
     // Logout 
     session_destroy();

@@ -1,3 +1,5 @@
+<script src="../javascript/player.js" defer></script>
+<audio id="player"></audio>
 <div class="flex flex__songs main__el main__el__songs main__el__top">
     <div class="flex flex__child">
         <!-- navbar -->
@@ -5,6 +7,15 @@
             <div class="flex flex__h nav__buttons">
                 <button class="nav__button"><i class="fa-solid fa-chevron-left"></i></button>
                 <button class="nav__button"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="nav__list">
+                <ul>
+                    <div class="flex flex__h">
+                        <li class="nav__link"><a href="#rec">Reccomended</a></li>
+                        <li class="nav__link"><a href="#fol">Followed</a></li>
+                        <li class="nav__link"><a href="#pod">Podcasts</a></li>
+                    </div>
+                </ul>
             </div>
         </div>
         <!-- songs -->
@@ -20,7 +31,7 @@
                         </div>
                         <div class="cont__play">
                             <button>
-                                <i class="fa-solid fa-play"></i>
+                                <iconify-icon class="play_i__menu" inline icon="material-symbols:play-arrow" width="25" height="25"></iconify-icon>
                                 <!-- <i class="fa-solid fa-pause"></i> -->
                             </button>
                         </div>

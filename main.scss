@@ -3,21 +3,20 @@ $gray: #1a1a1a;
 $bg_primary: #191414;
 $bg_primary_tr: rgba(26, 26, 26, 0.5);
 $bg_secondary_tr: rgba(50, 50, 50, 0.5);
-$bg_secondary: #c93951;
+$bg_secondary: #c2233e;
 $bg_extra: #323232;
 $text_primary: #fff;
 $inactive: #5f5f5f;
 $link: #7f7f7f;
 $link_hover: #bfbfbf;
 $border: #2a2a2a;
-$fancyText: linear-gradient(
-    to right,
-    $link,
-    $bg_secondary,
-    $text_primary,
-    $link_hover
-  );
-$bg_gradient: linear-gradient(to bottom, $bg_secondary, $gray);
+$fancyGradient: linear-gradient(
+    43deg,
+    #4158D0 0%,
+    #C850C0 46%,
+    #FFCC70 100%
+);
+$bg_gradient: linear-gradient(to bottom, $gray, $bg_extra);
 
 $menu_width: 200px;
 
@@ -65,6 +64,7 @@ $menu_width: 200px;
 }
 
 input[type="range"] {
+    transition: all 500ms ease;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -78,15 +78,17 @@ input[type="range"] {
     $range: 200px;
 
     &:hover {
-        &::-webkit-slider-thumb, -moz-range-thumb {
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
             background: $text_primary;
             box-shadow: -$range 0 0 $range $bg_secondary;
-        }
-        
+        }        
     }
 
-    &::-webkit-slider-thumb, -moz-range-thumb {
+    &::-webkit-slider-thumb {
+        transition: all 300ms ease;
         -webkit-appearance: none;
+        -moz-appearance: none;
         appearance: none;
         position: relative;
         height: 5px;
@@ -103,6 +105,25 @@ input[type="range"] {
             box-shadow: -$range 0 0 $range $bg_secondary;
         }
 
+    }
+
+    &::-moz-range-progress {
+        // transition: all 300ms ease;
+        background: $text_primary;
+        height: 100%;
+        border: none;
+    }
+
+    &::-moz-range-thumb {
+        // transition: all 500ms ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        outline: none;
+        appearance: none;
+        border: none;
+        background: $text_primary;
+        height: 5px;
+        width: 5px;
     }
 }
 
@@ -172,12 +193,16 @@ body {
         height: 1px;
         width: 100%;
         background-color: $inactive;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
     }
 
     .logo {
         color: $text_primary;
         margin-bottom: 10px;
+    }
+
+    button {
+        cursor: pointer;
     }
 }
 
@@ -199,13 +224,7 @@ body {
 
                 @include scrollbars(5px, $link, $bg_primary);
             }
-            // &__settings {
-            //     display: hidden;
-            //     background: $bg_primary;
-            //     grid-column-start: 7;
-            //     grid-column-end: 9;
 
-            // }
             &__player {
                 position: fixed;
                 backdrop-filter: blur(10px);
@@ -269,6 +288,10 @@ body {
         }
     }
 
+    &__text {
+        gap: 0;
+    }
+
 }
 
 .text {
@@ -278,13 +301,14 @@ body {
     }
 
     &__container {
+        $wd: 50%;
         overflow: hidden;
-        width: 50%;
+        width: $wd;
 
-        &:hover &__scroll {
+        &:hover .name {
             transform: translateX(-50%);
         }
-        &__scroll {
+        &__scroll, .name {
             transition: all 5s ease;
             white-space: nowrap;
 
@@ -296,6 +320,9 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    background: $bg_extra;
+    padding: 5px;
+    border-radius: 15px;
 
     &__buttons {
         gap: 10px;
@@ -336,6 +363,7 @@ body {
                 width: inherit;
                 height: inherit;
                 border-radius: 50%;
+                object-fit: cover;
             }
         }
 
@@ -348,18 +376,22 @@ body {
             border-radius: 100%;
             width: 30px;
             height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             &-dropdown {
                 display: none;
                 position: absolute;
                 top: 0;
                 left: 200px;
-                background: $bg_secondary_tr;
+                background: $bg_primary;
                 border-radius: 5px;
                 width: 160px;
-                min-height: 145px;
-                padding: 5px;
+                // min-height: 145px;
+                padding: 1px;
                 z-index: 2;
+                font-size: 13px;
 
                 ul {
                     display: flex;
@@ -373,7 +405,7 @@ body {
                 li {
                     transition: all 200ms ease;
                     display: flex;
-                    background: $bg_extra;
+                    // background: $bg_extra;
                     color: $text_primary;
                     cursor: pointer;
                     width: 100%;
@@ -396,28 +428,36 @@ body {
                     }
 
                     .link__content {
+                        &:hover {
+                            iconify-icon {
+                                color: $bg_primary;
+                            }
+                        }
                         position: relative;
                         width: 140px;
                         height: 100%;
                         color: $link;
 
-                        i {
+                        iconify-icon {
                             position: relative;
+                            color: $text_primary;
                         }
 
                         .notification__count {
                             position: absolute;
                             height: 15px;
                             width: 15px;
-                            border-radius: 50%;
+                            max-width: 20px;
+                            border: 1px solid $bg_primary;
+                            border-radius: 15px;
                             font-size: 10px;
                             background: $bg_secondary;
                             color: $text_primary;
                             display: flex;
                             align-items: center;
                             justify-content: center;
-                            top: -5px;
-                            right: -5px;
+                            top: 5px;
+                            right: 2px;
                             padding: 1px;
                         }
                     }
@@ -432,7 +472,8 @@ body {
 
                 .logout {
                     transition: all 200ms ease;
-                    background: $bg_secondary;
+                    // background: $bg_secondary;
+                    background: none;
                     cursor: pointer;
                     width: 100%;
                     border: none;
@@ -524,10 +565,10 @@ body {
                 &:hover &-scroll{
                     cursor: pointer;
                     text-decoration: underline;
-                    transform: translateX(-50%);
+                    transform: translateX(calc($wd - 105%));
                 }
                 &-scroll {
-                    transition: all 10s ease;
+                    transition: all 3s ease;
                     display: inline-block;
                     -moz-transform: translateX(0%);
                     -webkit-transform: translateX(0%);
@@ -592,6 +633,7 @@ body {
                 }
 
                 &__tracker {
+                    // transition: all 500ms ease;
                     display: none;
                     position: absolute;
                     width: 10px;
@@ -614,8 +656,12 @@ body {
     }
 
     &__options {
-        gap: 20px;
+        gap: 10px;
         width: 150px;
+
+        @media (max-width: 700px) {
+            gap: 0;
+        }
 
         &__volume {
             gap: 8px;
@@ -624,6 +670,7 @@ body {
                 border: none;
                 background: none;
                 color: $link_hover;
+                width: 15px;
             }
 
             &__range {
@@ -632,6 +679,7 @@ body {
                 align-items: center;
                 flex-direction: row;
                 width: 150%;
+                margin-bottom: 3px;
         
                 &:hover &-tracker{
                     display: block;
@@ -666,19 +714,30 @@ body {
     &__media {
         font-size: 16px;
         &__play {
+            transition: all 300ms ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: $bg_primary;
             background: $text_primary;
             cursor: pointer;
-            box-shadow: 0 0 10px 0 $text_primary;
             width: 35px;
             height: 35px;
             border-radius: 100%;
-            padding-left: 3px;
-            padding-top: 2px;
+            .fa-play {
+                padding-left: 2px;
+                
+            }
+            iconify-icon {
+                padding-top: 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                pointer-events: none;
+            }
 
             &:hover {
-                transition: all 300ms ease;
-                transform: scale(110%);
+                box-shadow: 0 0 5px 0 $text_primary;
             }
         }
     }
@@ -694,7 +753,7 @@ body {
 
     &:hover &__fancy {
         transition: all 200ms ease;
-        background: $bg_secondary;
+        background: $text_primary;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
@@ -708,8 +767,16 @@ body {
         align-items: center;
         justify-content: center;
     }
+
     &__content {
         align-items: center;
+    }
+    &-strong {
+        color: $text_primary;
+        &:hover {
+            color: $text_primary;
+            text-decoration: underline;
+        }
     }
     
 }
@@ -753,9 +820,10 @@ body {
                 background: $bg_secondary_tr;
             }
 
-            &:hover .cont__play {
-                transition: all 500ms ease;
-                display: block;
+            &:hover { 
+                .cont__play {
+                    display: block;
+                }
             }
 
             .cont {
@@ -776,10 +844,10 @@ body {
                     }
                 }
 
-                
                 &__play {
+                    transition: all 500ms ease;
+                    display: none;
                     button { 
-                        display: block;
                         position: absolute;
                         left: 64%;
                         bottom: 36%;
@@ -1007,5 +1075,123 @@ body {
         display: flex;
         flex-direction: row;
         gap: 5px;
+    }
+}
+
+// Other pages
+.profile {
+    padding: 10px;
+    
+    &__menu {
+        width: 100%;
+        height: 100vh;
+        overflow: scroll;
+    }
+    
+    &__items {
+        background: $bg_primary;
+    }
+
+    &__container {
+        gap: 50px;
+        margin: 10px;
+    }
+
+    &__details {
+        &__image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        p {
+            color: $link;
+        }
+
+    }
+
+    &__exit {
+        background: $bg_secondary;
+        color: $text_primary;
+        text-align: center;
+        height: 30px;
+        width: 70%;
+        border-radius: 5px;
+    }
+
+    &__banner {
+        $height_l: 250px;
+        $height_sm: 150px;
+        img {
+            position: fixed;
+            object-fit: cover;
+            width: 100%;
+            height: $height_l;
+            z-index: -2;
+    
+            @media screen and (max-width: 450px) {
+                height: $height_sm;
+
+                &-space {
+                    height: $height_sm;
+                }
+            }
+        }
+
+        &-space {
+            height: $height_l;
+        }
+    }
+
+}
+
+.other__page {
+    background: $bg_primary;
+    display: flex;
+    flex-direction: row;
+}
+
+.upload {
+    gap: 50px;
+    margin-top: 10px;
+    &__container {
+        transition: all 500ms ease;
+        -webkit-transition: background-color 500ms linear;
+        -ms-transition: background-color 500ms linear;
+        transition: background-color 500ms linear;
+
+        background-color: $bg_extra;
+        width: 150px;
+        height: 180px;
+        padding: 20px;
+        border-radius: 5px;
+        gap: 10px;
+        
+        &:hover {
+            background: $fancyGradient;
+            color: $text_primary;
+
+        }
+        &:hover  &-icon {
+            border-color: $text_primary;
+        }
+
+        &-icon {
+            border-radius: 5px;
+            border: 2px solid $link;
+            height: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            iconify-icon {
+                font-size: 50px;
+            }
+        }
+        p {
+            text-align: center;
+            text-transform: uppercase;
+        }
     }
 }
