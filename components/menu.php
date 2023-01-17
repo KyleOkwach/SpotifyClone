@@ -15,7 +15,7 @@
             <div class="text__container">
                 <p class="text__mini">Hello</p>
                 <div class="text__container__scroll">
-                    <p class="name">
+                    <p class="text__content">
                         <a href="profile.php" class="link-strong">
                             <?php echo $row['username'] ?>
                         </a>

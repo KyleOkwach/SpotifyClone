@@ -6,7 +6,7 @@
         <div class="form__div">
             <a href="index.php"><h2 class="logo"><i class="fa-solid fa-infinity"></i> Unify</h2></a>
             <hr>
-            <h4>Create a Unify account</h4>
+            <h4 class="prompt">Create a Unify account</h4>
             <form class="form__div__login" autocomplete="off" enctype="multipart/form-data">
                 <div class="form__error">Error message!</div>
                 <div class="form__div__login-sect">

@@ -42,8 +42,8 @@
                                 // encrypt password
                                 $pass_crpt = password_hash($password, PASSWORD_DEFAULT);
                                 $uniqueId = uniqid("");
-                                // post data to database
 
+                                // post data to database
                                 $sql = mysqli_query($conn, "INSERT INTO users(unique_id, email, username, password, img)
                                                             values('{$uniqueId}', '{$email}', '{$username}', '{$pass_crpt}', '{$imgNewName}')");
 

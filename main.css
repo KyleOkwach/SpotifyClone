@@ -217,10 +217,13 @@ body button {
   overflow: hidden;
   width: 50%;
 }
-.text__container:hover .name {
+.text__container-large {
+  width: 100%;
+}
+.text__container:hover .text__content {
   transform: translateX(-50%);
 }
-.text__container__scroll, .text__container .name {
+.text__container__scroll, .text__container .text__content {
   transition: all 5s ease;
   white-space: nowrap;
 }
@@ -584,6 +587,46 @@ body button {
 .btn__media__play:hover {
   box-shadow: 0 0 5px 0 #fff;
 }
+.btn__toggle {
+  transition: all 300ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #323232;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  font-size: 24px;
+}
+.btn__toggle__exit {
+  position: absolute;
+  background: none;
+  right: -5px;
+  top: -5px;
+}
+.btn__toggle__exit:hover {
+  background: #323232;
+}
+.btn__form__input {
+  transition: all 300ms ease;
+  background: #c2233e;
+  color: #fff;
+  height: 45px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.btn__form__input:hover {
+  background: #fff;
+  color: #191414;
+}
+.btn__upload {
+  border: none;
+  background: none;
+  color: #bfbfbf;
+}
 
 .link:hover .link__icon {
   transition: all 500ms ease;
@@ -668,22 +711,25 @@ body button {
   transition: all 500ms ease;
   display: none;
 }
-.song__cont__main .cont__play button {
+.song__cont__main .cont__play a, .song__cont__main .cont__play button {
   position: absolute;
   left: 64%;
   bottom: 36%;
   width: 40px;
   height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 5px;
   background: #c2233e;
   color: #fff;
   box-shadow: 0 5px 15px 0 #191414;
 }
-.song__cont__main .cont__play button:hover {
+.song__cont__main .cont__play a:hover, .song__cont__main .cont__play button:hover {
   transition: all 200ms ease;
-  transform: scale(105%);
-  cursor: default;
+  background: #fff;
+  color: #191414;
 }
 .song__cont__main .cont__text__details {
   display: flex;
@@ -728,6 +774,9 @@ body button {
   width: 450px;
   padding: 20px;
   border-radius: 15px;
+}
+.form__div .prompt {
+  margin-top: 15px;
 }
 .form__div input[type=submit] {
   height: 40px;
@@ -889,6 +938,7 @@ body button {
 .profile__banner img {
   position: fixed;
   object-fit: cover;
+  background-position: center;
   width: 100%;
   height: 250px;
   z-index: -2;
@@ -948,6 +998,55 @@ body button {
 .upload__container p {
   text-align: center;
   text-transform: uppercase;
+}
+.upload__container-drop {
+  transition: all 200ms ease;
+  width: 100%;
+  height: 150px;
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #323232;
+  color: #323232;
+  border-radius: 15px;
+}
+.upload__container-drop:hover {
+  border-color: #7f7f7f;
+  color: #7f7f7f;
+  cursor: pointer;
+}
+.upload__container-button {
+  background: none;
+  border: none;
+  width: 50%;
+}
+
+.modal {
+  justify-content: center;
+  background: #191414;
+}
+.modal__container {
+  position: fixed;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal__header {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+}
+.modal__form {
+  margin-top: 20px;
+  max-height: 80vh;
 }
 
 /*# sourceMappingURL=main.css.map */

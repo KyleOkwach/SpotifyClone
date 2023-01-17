@@ -8,6 +8,7 @@
         header("location: login.php");
     }
 ?>
+<script src="main.js" defer></script>
 <body>
     <!-- body -->
     <div class="container container__main flex">

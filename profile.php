@@ -12,25 +12,13 @@
     $profile_page = TRUE;
 
 ?>
+<script src="../javascript/modal_control.js" defer></script>
 <body class="other__page">
-    <!-- <div class="container container__main flex">
-        <div class="flex flex__menu main__el main__el__menu main__el__top">
-            <div class="flex profile">
-                <div class="flex flex__h profile__details">
-                    <img class="profile__details__image" src="php/uploads/profiles/<?php echo $row['img'] ?>" alt="profile">
-                    <div>
-                        <h2><?php echo $row['username'] ?></h2>
-                        <p>Normal user</p>
-                    </div>
-                </div>
-                <a href="index.php" class="profile__exit">Return</a>
-            </div>
-        </div>
-    </div> -->
     <?php include "components/menu.php" ?>
     <div class="profile__menu">
+        <div class="modal__container"><?php include_once "modals/music_modal.php" ?></div>
         <div class="profile__banner">
-            <img src="php/images/profiles/image2.png">
+            <img src="php/uploads/profiles/<?php echo $row['img'] ?>">
         </div>
         <div class="profile__banner-space"></div>
         <div class="profile__items">
@@ -41,22 +29,22 @@
                     <h2>ad</h2>
                 </div>
                 <div class="flex flex__h upload">
-                    <a href="#">
+                    <button class="btn__upload">
                         <div class="flex upload__container">
                             <div class="upload__container-icon">
                                 <iconify-icon icon="mdi:music-note-plus"></iconify-icon>
                             </div>
                             <p>song</p>
                         </div>
-                    </a>
-                    <a href="#">
+                    </button>
+                    <!-- <button>
                         <div class="flex upload__container">
                             <div class="upload__container-icon">
                                 <iconify-icon icon="mdi:podcast"></iconify-icon>
                             </div>
                             <p>podcast</p>
                         </div>
-                    </a>
+                    </button> -->
                 </div>
             </div>
             <div class="profile__container">

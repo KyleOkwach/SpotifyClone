@@ -305,13 +305,16 @@ body {
         overflow: hidden;
         width: $wd;
 
-        &:hover .name {
+        &-large {
+            width: 100%;
+        }
+
+        &:hover .text__content {
             transform: translateX(-50%);
         }
-        &__scroll, .name {
+        &__scroll, .text__content {
             transition: all 5s ease;
             white-space: nowrap;
-
         }
     }
 }
@@ -741,6 +744,54 @@ body {
             }
         }
     }
+
+    &__toggle {
+        transition: all 300ms ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text_primary;
+        background: $bg_extra;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        font-size: 24px;
+
+        &__exit {
+            position: absolute;
+            background: none;
+            right: -5px;
+            top: -5px;
+
+            &:hover {
+                background: $bg_extra;
+            }
+        }
+    }
+
+    &__form {
+        &__input {
+            transition: all 300ms ease;
+            background: $bg_secondary;
+            color: $text_primary;
+            height: 45px;
+            border-radius: 5px;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background: $text_primary;
+                color: $bg_primary;
+            }
+        }
+    }
+
+    &__upload {
+        border: none;
+        background: none;
+        color: $link_hover;
+    }
 }
 
 .link {
@@ -847,13 +898,16 @@ body {
                 &__play {
                     transition: all 500ms ease;
                     display: none;
-                    button { 
+                    a, button { 
                         position: absolute;
                         left: 64%;
                         bottom: 36%;
                         $size: 40px;
                         width: $size;
                         height: $size;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         border: none;
                         border-radius: 5px;
                         background: $bg_secondary;
@@ -862,8 +916,8 @@ body {
 
                         &:hover {
                             transition: all 200ms ease;
-                            transform: scale(105%);
-                            cursor: default;
+                            background: $text_primary;
+                            color: $bg_primary;
                         }
                     }
                 }
@@ -926,6 +980,10 @@ body {
         width: 450px;
         padding: 20px;
         border-radius: 15px;
+
+        .prompt {
+            margin-top: 15px;
+        }
 
         input[type="submit"] {
             height: 40px;
@@ -1126,7 +1184,11 @@ body {
         img {
             position: fixed;
             object-fit: cover;
+            background-position: center;
             width: 100%;
+            // margin-left: auto;
+            // margin-right: auto;
+            // margin-top: auto;
             height: $height_l;
             z-index: -2;
     
@@ -1155,6 +1217,7 @@ body {
 .upload {
     gap: 50px;
     margin-top: 10px;
+    
     &__container {
         transition: all 500ms ease;
         -webkit-transition: background-color 500ms linear;
@@ -1193,5 +1256,69 @@ body {
             text-align: center;
             text-transform: uppercase;
         }
+
+        &-drop {
+            transition: all 200ms ease;
+            width: 100%;
+            height: 150px;
+            // background: $bg_extra;
+            padding: 15px;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid $bg_extra;
+            color: $bg_extra;
+            border-radius: 15px;
+
+            &:hover {
+                border-color: $link;
+                color: $link;
+                cursor: pointer;
+            }
+        }
+
+        &-button {
+            background: none;
+            border: none;
+            width: 50%;
+        }
+    }
+}
+
+// Modals
+
+.modal {
+    // display: none;
+    // display: block;
+    justify-content: center;
+    background: $bg_primary;
+
+    &__container {
+        position: fixed;
+        display: none;
+        // display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        // overflow: auto;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.4); 
+    }
+
+    &__header {
+        position: relative;
+        // background: red;
+        width: 100%;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__form {
+        margin-top: 20px;
+        max-height: 80vh;
+        // overflow: scroll;
     }
 }
