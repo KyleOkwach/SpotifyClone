@@ -16,8 +16,6 @@ const fetch_songs = () => {
                 let data = xhr.response;
     
                 collectionContainer.innerHTML = data;
-                // console.log(data);
-                // console.log("hello");
             }
         }
     }

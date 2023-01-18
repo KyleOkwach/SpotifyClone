@@ -4,7 +4,7 @@
 <body>
     <div class="main__body">
         <div class="form__div">
-            <a href="index.php"><h2 class="logo"><i class="fa-solid fa-infinity"></i> Unify</h2></a>
+            <a href="index.php"><h2 class="logo"><i class="fa-solid fa-infinity"></i> SONGZ</h2></a>
             <hr>
             <h4 class="prompt">You must login to continue</h4>
             <form class="form__div__login" autocomplete="off">
