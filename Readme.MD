@@ -1,6 +1,6 @@
 ![Banner](MD/SONGZ.png)
 # Music Streaming Platform
-https://img.shields.io/github/repo-size/KyleOkwach/SpotifyClone?style=flat-square
+![GitHub repo size](https://img.shields.io/github/repo-size/KyleOkwach/SpotifyClone?style=flat-square)
 ____
 ## Introduction
 A music streaming platform created using PHP and MySQL.
